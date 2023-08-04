@@ -50,6 +50,7 @@ export const HomePage = () => {
 
   const removeAllCartList = () => {
     setCartList([]);
+    setIsVisible(false);
     toast.success("Todos os itens foram removidos");
   };
 
