@@ -1,0 +1,15 @@
+:root {
+  --color-green: #27ae60;
+  --color-red: #eb5757;
+  --color-grey600: #333;
+  --color-grey300: #828282;
+  --color-grey100: #e0e0e0;
+  --color-grey0: #f5f5f5;
+  --color-white: #fff;
+  --background-button: #bdbdbd;
+  --font-primary: "Inter", sans-serif;
+}
+
+* {
+  font-family: var(--font-primary);
+}

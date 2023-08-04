@@ -1,0 +1,59 @@
+.placeHolder {
+  color: var(--color-grey100);
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 18px;
+
+  &.black {
+    color: var(--color-grey600);
+  }
+
+  &.white {
+    color: var(--color-white);
+  }
+}
+
+.category {
+  font-weight: 400;
+  font-size: 12px;
+  color: var(--color-grey300);
+}
+
+.paragraph {
+  font-weight: 600;
+  font-size: 14px;
+
+  &.green {
+    color: var(--color-green);
+  }
+
+  &.white {
+    color: var(--color-white);
+  }
+
+  &.black {
+    color: var(--color-grey600);
+  }
+}
+
+.price {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-grey300);
+}
+
+.remove {
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--color-grey300);
+}
+
+.cartNumber {
+  font-weight: 900;
+  font-size: 14px;
+  color: var(--color-white);
+}

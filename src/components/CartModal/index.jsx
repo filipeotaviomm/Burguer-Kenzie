@@ -1,5 +1,6 @@
 import { MdClose } from "react-icons/md";
 import { CartItemCard } from "./CartItemCard";
+import styles from "./style.module.scss";
 
 export const CartModal = ({
   setIsVisible,
@@ -12,19 +13,19 @@ export const CartModal = ({
   }, 0);
 
   return (
-    <div role="dialog">
-      <div>
-        <h2>Carrinho de compras</h2>
-        <button
-          onClick={() => setIsVisible(false)}
-          aria-label="close"
-          title="Fechar"
-        >
-          <MdClose size={21} />
-        </button>
-      </div>
-      <div>
-        <ul>
+    <div className={styles.overlayBox} role="dialog">
+      <div className={styles.modalBox}>
+        <div className={styles.modalHeader}>
+          <h2 className="title white">Carrinho de compras</h2>
+          <button
+            onClick={() => setIsVisible(false)}
+            aria-label="close"
+            title="Fechar"
+          >
+            <MdClose size={21} />
+          </button>
+        </div>
+        <ul className={styles.cardsUl}>
           {cartList.map((product) => (
             <CartItemCard
               key={product.id}
@@ -33,18 +34,22 @@ export const CartModal = ({
             />
           ))}
         </ul>
-      </div>
-      <div>
         <div>
-          <span>Total</span>
-          <span>
-            {total.toLocaleString("pt-BR", {
-              style: "currency",
-              currency: "BRL",
-            })}
-          </span>
+          <div className={styles.totalBox}>
+            <div className={styles.totalPrice}>
+              <span className="paragraph black">Total</span>
+              <span className="price">
+                {total.toLocaleString("pt-BR", {
+                  style: "currency",
+                  currency: "BRL",
+                })}
+              </span>
+            </div>
+            <button className="remove lgButton" onClick={removeAllCartList}>
+              Remover todos
+            </button>
+          </div>
         </div>
-        <button onClick={removeAllCartList}>Remover todos</button>
       </div>
     </div>
   );

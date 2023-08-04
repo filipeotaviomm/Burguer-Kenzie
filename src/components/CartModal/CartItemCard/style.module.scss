@@ -1,0 +1,55 @@
+.list {
+  display: flex;
+  flex-direction: column;
+
+  .innerCard {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .imgTitlePrice {
+      display: flex;
+      flex-direction: row;
+
+      .imgSquare {
+        width: 80px;
+        height: 80px;
+        border-radius: 5px;
+        background-color: var(--color-grey100);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .alignTexts {
+        display: flex;
+        flex-direction: column;
+        margin-left: 15px;
+        justify-content: space-between;
+
+        .itensNumber {
+          display: flex;
+          flex-direction: row;
+          border: 1px solid var(--background-button);
+          border-radius: 5px;
+          gap: 10px;
+          justify-content: center;
+          width: 60px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+          button {
+            color: red;
+            background-color: transparent;
+          }
+        }
+      }
+    }
+
+    .removeButton {
+      background-color: transparent;
+      color: var(--background-button);
+      display: flex;
+      align-items: flex-start;
+    }
+  }
+}

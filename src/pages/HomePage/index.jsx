@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 export const HomePage = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [productList, setProductList] = useState([]);
-  const [productListFilter, setproductListFilter] = useState([]);
+  const [inputValue, setInputValue] = useState("");
 
   const cartListLocalStorage = JSON.parse(localStorage.getItem("@CARTLIST"));
 
@@ -22,7 +22,6 @@ export const HomePage = () => {
       try {
         const { data } = await menuApi.get("/products");
         setProductList(data);
-        setproductListFilter(data);
       } catch (error) {
         console.error;
       }
@@ -51,15 +50,17 @@ export const HomePage = () => {
 
   const removeAllCartList = () => {
     setCartList([]);
-    toast("Todos os itens foram removidos");
+    toast.success("Todos os itens foram removidos");
   };
 
-  //ok useEffect montagem - carrega os produtos da API e joga em productList
-  //ok useEffect atualização - salva os produtos no localStorage (carregar no estado)
-  // ok adição, exclusão, e exclusão geral do carrinho
-  // ok renderizações condições e o estado para exibir ou não o carrinho
-  // filtro de busca
-  // estilizar tudo com sass de forma responsiva
+  const productsResult = productList.filter((product) => {
+    const searchFilter =
+      inputValue === ""
+        ? true
+        : product.name.toLowerCase().includes(inputValue.toLowerCase()) ||
+          product.category.toLowerCase().includes(inputValue.toLowerCase());
+    return searchFilter;
+  });
 
   return (
     <>
@@ -67,13 +68,17 @@ export const HomePage = () => {
         setIsVisible={setIsVisible}
         cartList={cartList}
         productList={productList}
-        setproductListFilter={setproductListFilter}
+        inputValue={inputValue}
+        setInputValue={setInputValue}
       />
       <main>
         <ProductList
-          productList={productListFilter}
+          productList={productList}
+          productsResult={productsResult}
           addCartList={addCartList}
+          inputValue={inputValue}
         />
+
         {isVisible ? (
           <CartModal
             setIsVisible={setIsVisible}
@@ -82,6 +87,7 @@ export const HomePage = () => {
             cartList={cartList}
           />
         ) : null}
+
         <ToastContainer autoClose={2 * 1000} />
       </main>
     </>
