@@ -1,7 +1,7 @@
 import { MdClose } from "react-icons/md";
 import { CartItemCard } from "./CartItemCard";
 import styles from "./style.module.scss";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export const CartModal = ({
   setIsVisible,
@@ -9,6 +9,12 @@ export const CartModal = ({
   removeCartList,
   removeAllCartList,
 }) => {
+  const [sum, setSum] = useState(0);
+
+  const add = (price) => {
+    setSum(sum + price);
+  };
+
   const total = cartList.reduce((prevValue, product) => {
     return prevValue + product.price;
   }, 0);
@@ -65,6 +71,7 @@ export const CartModal = ({
               key={product.id}
               product={product}
               removeCartList={removeCartList}
+              add={add}
             />
           ))}
         </ul>
@@ -72,12 +79,7 @@ export const CartModal = ({
           <div className={styles.totalBox}>
             <div className={styles.totalPrice}>
               <span className="paragraph black">Total</span>
-              <span className="price">
-                {total.toLocaleString("pt-BR", {
-                  style: "currency",
-                  currency: "BRL",
-                })}
-              </span>
+              <span className="price">{`R$${total + sum}`}</span>
             </div>
             <button className="remove lgButton" onClick={removeAllCartList}>
               Remover todos

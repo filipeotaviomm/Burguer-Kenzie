@@ -1,7 +1,23 @@
+import { useState } from "react";
+
 import { MdDelete } from "react-icons/md";
 import styles from "./style.module.scss";
 
-export const CartItemCard = ({ product, removeCartList }) => {
+export const CartItemCard = ({ product, removeCartList, add }) => {
+  const [count, setCount] = useState(1);
+
+  const countMinus = (price) => {
+    if (count > 1) {
+      setCount((count) => count - 1);
+      add(-price);
+    }
+  };
+
+  const countPlus = (price) => {
+    setCount((count) => count + 1);
+    add(price);
+  };
+
   return (
     <li className={styles.list}>
       <div className={styles.innerCard}>
@@ -18,9 +34,21 @@ export const CartItemCard = ({ product, removeCartList }) => {
               })}
             </span>
             <div className={styles.itensNumber}>
-              <button>-</button>
-              <p>1</p>
-              <button>+</button>
+              <button
+                onClick={() => {
+                  countMinus(product.price);
+                }}
+              >
+                -
+              </button>
+              <p>{count}</p>
+              <button
+                onClick={() => {
+                  countPlus(product.price);
+                }}
+              >
+                +
+              </button>
             </div>
           </div>
         </div>

@@ -89,7 +89,7 @@ export const HomePage = () => {
           />
         ) : null}
 
-        <ToastContainer autoClose={2 * 1000} />
+        <ToastContainer position="bottom-right" autoClose={2 * 1000} />
       </main>
     </>
   );
